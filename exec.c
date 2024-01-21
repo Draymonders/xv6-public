@@ -7,6 +7,7 @@
 #include "x86.h"
 #include "elf.h"
 
+// exec("sh", char *[]{"sh", 0}
 int
 exec(char *path, char **argv)
 {

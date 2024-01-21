@@ -38,9 +38,9 @@ walkpgdir(pde_t *pgdir, const void *va, int alloc)
   pde_t *pde;
   pte_t *pgtab;
 
-  pde = &pgdir[PDX(va)];
+  pde = &pgdir[PDX(va)]; // PDX(va) => 获取va的前10位，pde元素存储的是物理地址
   if(*pde & PTE_P){
-    pgtab = (pte_t*)P2V(PTE_ADDR(*pde));
+    pgtab = (pte_t*)P2V(PTE_ADDR(*pde)); // PTE_ADDR(addr) =>  ((uint)(pte) & ~0xFFF)
   } else {
     if(!alloc || (pgtab = (pte_t*)kalloc()) == 0)
       return 0;
@@ -51,7 +51,7 @@ walkpgdir(pde_t *pgdir, const void *va, int alloc)
     // entries, if necessary.
     *pde = V2P(pgtab) | PTE_P | PTE_W | PTE_U;
   }
-  return &pgtab[PTX(va)];
+  return &pgtab[PTX(va)]; // PTX(va) => 获取va的前11-20位
 }
 
 // Create PTEs for virtual addresses starting at va that refer to
