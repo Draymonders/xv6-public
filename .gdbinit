@@ -27,3 +27,5 @@ echo + symbol-file kernel\n
 symbol-file kernel
 
 break main
+break scheduler
+break switchuvm

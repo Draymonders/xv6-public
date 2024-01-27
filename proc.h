@@ -29,7 +29,7 @@ struct context {
   uint esi;
   uint ebx;
   uint ebp;
-  uint eip;
+  uint eip;  // 用户进程初始化指向的是 forkret
 };
 
 enum procstate { UNUSED, EMBRYO, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };
